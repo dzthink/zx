@@ -30,7 +30,7 @@ skip_render:
 
 # Writing
 new_post_name: :title.md # File name of new posts
-default_layout: post
+default_layout: draft
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
@@ -78,6 +78,16 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+- type: git
   repo: git@github.com:dzthink/dzthink.github.io.git
   branch: master
+
+- type: rsync
+  host: 106.52.179.206
+  user: zxduan
+  root: /data/web/hexo
+  port: 22
+  delete: true
+  verbose: true
+  ignore_errors: false
+
