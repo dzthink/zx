@@ -68,19 +68,19 @@ footer:
     # Hexo link (Powered by Hexo).
     enable: true
     # Version info of Hexo after Hexo link (vX.X.X).
-    version: true
+    version: false
 
   theme:
     # Theme & scheme info link (Theme - NexT.scheme).
     enable: true
     # Version info of NexT after scheme info (vX.X.X).
-    version: true
+    version: false
 
   # Beian icp information for Chinese users. In China, every legal website should have a beian icp in website footer.
   # http://www.beian.miit.gov.cn
   beian:
-    enable: false
-    icp:
+    enable: true
+    icp: "粤ICP备20008850号"
 
   # Any custom text can be defined here.
   #custom_text: Hosted by <a href="https://pages.coding.me" class="theme-link" rel="noopener" target="_blank">Coding Pages</a>
@@ -199,7 +199,7 @@ site_state: true
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/dzthink || github
-  E-Mail: dzthink@qq.com || envelope
+  E-Mail: mailto:dzthink@qq.com || envelope
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
