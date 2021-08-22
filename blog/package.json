@@ -1,0 +1,15 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "init": "rm -rf hexo && npx hexo init hexo && cp -f _config.yaml hexo/_config.yml && cd hexo && npm install hexo-theme-next",
+    "preview": "npx hexo server --cwd hexo/",
+    "deploy": "npx hexo d --cwd hexo/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hexo": "^5.4.0"
+  }
+}
