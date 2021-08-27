@@ -1,6 +1,7 @@
 ---
 title: php taint扩展分析
 date: 2016-01-04
+draft: true
 tags:
 - taint
 - php扩展
