@@ -84,6 +84,12 @@ if [ ! -d "/usr/local/nginx" ]; then
 fi
 echo "tengine 安装成功"
 
+#初始化配置
+if [ ! -d "/usr/local/nginx/conf/vhosts" ]; then
+    mkdir /usr/local/nginx/conf/vhosts
+fi
+cp -f ${SCRIPT_DIR}/tengine/nginx.conf /usr/local/nginx/conf/nginx.conf
+
 #添加系统启动
 echo "设置开机启动"
 if [ ! -f "/etc/init.d/nginx" ]; then
