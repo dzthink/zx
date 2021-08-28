@@ -30,7 +30,7 @@ skip_render:
 
 # Writing
 new_post_name: :title.md # File name of new posts
-default_layout: draft
+default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
@@ -75,6 +75,14 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
+theme_config:
+  darkmode: true
+  favicon:
+    small: /favicon/favicon-16x16.png
+    medium: /favicon/favicon-32x32.png
+    apple_touch_icon: /favicon/apple-touch-icon.png
+    safari_pinned_tab: /favicon/safari-pinned-tab.svg
+    android_manifest: /favicon/site.webmanifest
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

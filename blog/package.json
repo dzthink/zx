@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "init": "rm -rf hexo && npx hexo init hexo && cp -f _config.yaml hexo/_config.yml && cd hexo && npm install hexo-theme-next",
+    "init": "rm -rf hexo && npx hexo init hexo  && rm -f hexo/source/_posts/hello-world.md && cp -rf my_hexo/* hexo && cd hexo && npm install hexo-theme-next && npm install hexo-deployer-git && npm install hexo-deployer-git && npm install hexo-deployer-rsync",
     "preview": "npx hexo server --cwd hexo/",
-    "deploy": "npx hexo d --cwd hexo/"
+    "deploy": "cp -rf ../articles/* hexo/source/_posts && mv hexo/source/_posts/img hexo/source/img && hexo g --cwd hexo && hexo d --cwd hexo/"
   },
   "author": "",
   "license": "ISC",
