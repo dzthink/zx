@@ -83,9 +83,9 @@ deploy:
   branch: master
 
 - type: rsync
-  host: 106.52.179.206
+  host: 110.42.128.112
   user: zxduan
-  root: /data/web/hexo
+  root: /data/blog
   port: 22
   delete: true
   verbose: true
