@@ -100,6 +100,11 @@ theme_config:
   toc:
     enable: true
     expand_all: true
+  footer:
+    since: 2019
+    beian:
+      enable: true
+      icp: 粤ICP备20008850号-1
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
