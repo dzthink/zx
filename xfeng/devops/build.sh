@@ -2,7 +2,7 @@
 script_dir=$(dirname "$0")
 DEVOPS_DIR=$(cd "${script_dir}"; pwd)
 ROOT_DIR=$(cd "${DEVOPS_DIR}"/..; pwd)
-targets=("cli")
+targets=("xfeng")
 
 BIN_DIR=${ROOT_DIR}/bin
 #创建编译目录
