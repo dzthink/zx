@@ -8,14 +8,14 @@ import (
 	"strings"
 )
 
-func NewCli(name, short, long string) *Command {
+func NewCli(usageLine, short, long string) *Command {
 	cmd := &Command{
-		Name:  name,
-		Short: short,
-		Long:  long,
-		Run:   cliRun,
+		UsageLine: usageLine,
+		Short:     short,
+		Long:      long,
+		Run:       cliRun,
 	}
-	cmd.Flag = *flag.NewFlagSet(cmd.Name, flag.ContinueOnError)
+	cmd.Flag = *flag.NewFlagSet(cmd.Name(), flag.ContinueOnError)
 	return cmd
 }
 
@@ -35,7 +35,7 @@ func cliRun(ctx context.Context, cliCmd *Command, args []string) {
 	}
 	cmd, remainArg, err := cliCmd.FindCommand(withoutHelpArgs)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "find command fail for %s, err:%s\n", cliCmd.Name, err.Error())
+		fmt.Fprintf(os.Stderr, "find command fail for %s, err:%s\n", cliCmd.Name(), err.Error())
 
 		cmd.Help(os.Stderr)
 		os.Exit(0)
@@ -44,7 +44,7 @@ func cliRun(ctx context.Context, cliCmd *Command, args []string) {
 		cmd.Usage()
 	}
 	if !cmd.Runnable() {
-		fmt.Fprintf(os.Stderr, "%s is not runnalble", cmd.Name)
+		fmt.Fprintf(os.Stderr, "%s is not runnalble", cmd.Name())
 		cmd.Usage()
 	}
 	if cmd == cliCmd {

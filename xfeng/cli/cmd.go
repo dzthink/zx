@@ -5,10 +5,10 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"html/template"
 	"io"
 	"os"
 	"strings"
+	"text/template"
 	"unicode"
 	"unicode/utf8"
 )
@@ -16,10 +16,10 @@ import (
 var usageTemplate = `{{.Long | trim}}
 
 Usage:
-	{{.Name}} {{if .Commands}}<command>{{end}} [options]
+	{{.Name}} {{if .HasSubCommand}}<command>{{end}} [options]
 
 The commands are:
-{{range .Commands}}{{if or (.Runnable) .Commands}}
+{{range .GetSubCommands}}{{if or (.Runnable) .HasSubCommand}}
 	{{.Name | printf "%-11s"}} {{.Short}}{{end}}{{end}}
 
 Use "{{.Path}} help <command>" for more information about a command.
@@ -83,7 +83,7 @@ type Command struct {
 	// The args are the arguments after the command name.
 	Run func(ctx context.Context, cmd *Command, args []string)
 
-	Name string
+	UsageLine string
 
 	// Short is the short description shown in the 'go help' output.
 	Short string
@@ -98,19 +98,28 @@ type Command struct {
 	// flag parsing.
 	CustomFlags bool
 
-	// Commands lists the available commands and help topics.
+	// commands lists the available commands and help topics.
 	// The order here is the order in which they are printed by 'go help'.
 	// Note that subcommands are in general best avoided.
-	Commands []*Command
+	commands []*Command
 
 	parent *Command
 }
 
+// Name returns the command's short name: the last word in the usage line before a flag or argument.
+func (c *Command) Name() string {
+	name := c.UsageLine
+	if i := strings.Index(name, " "); i >= 0 {
+		name = name[0:i]
+	}
+	return name
+}
+
 func (c *Command) Path() string {
 	if c.parent == nil {
-		return c.Name
+		return c.Name()
 	}
-	return c.parent.Path() + " " + c.Name
+	return c.parent.Path() + " " + c.Name()
 }
 
 func (c *Command) Usage() {
@@ -125,29 +134,37 @@ func (c *Command) Runnable() bool {
 }
 
 func (c *Command) NewSubCommand(sc *Command) {
-	c.Commands = append(c.Commands, sc)
+	c.commands = append(c.commands, sc)
 }
 
 func (c *Command) FindCommand(args []string) (*Command, []string, error) {
-	if len(c.Commands) == 0 {
+	if len(c.commands) == 0 {
 		return c, args, nil
 	}
 	if len(args) == 0 {
-		return c, args, fmt.Errorf("not enough args for command:%s", c.Name)
+		return c, args, fmt.Errorf("not enough args for command:%s", c.Name())
 	}
-	for _, cmd := range c.Commands {
-		if cmd.Name != args[0] {
+	for _, cmd := range c.commands {
+		if cmd.Name() != args[0] {
 			continue
 		}
 		return cmd.FindCommand(args[1:])
 	}
-	return c, args, fmt.Errorf("unexpected arg for command:%s", c.Name)
+	return c, args, fmt.Errorf("unexpected arg for command:%s", c.Name())
 }
 func (c *Command) Help(w io.Writer) {
-	if len(c.Commands) > 0 {
+	if len(c.commands) > 0 {
 		printUsage(w, c)
 	} else {
 		tmpl(w, helpTemplate, c)
 	}
 	// not exit 2: succeeded at 'go help cmd'.
+}
+
+func (c *Command) HasSubCommand() bool {
+	return len(c.commands) > 0
+}
+
+func (c *Command) GetSubCommands() []*Command {
+	return c.commands
 }
