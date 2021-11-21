@@ -4,20 +4,20 @@ if [[ "$SHELL" == "/bin/bash" ]]; then
     # export DP_ROOT=$(dirname ${BASH_SOURCE})
     # 绝对路径
     export SMART_ROOT=$(cd $(dirname "${BASH_SOURCE}");pwd)
-    if ! grep -q "source ${SMART_ROOT}/dprc.sh" ~/.bashrc; then
-        echo "source ${SMART_ROOT}/dprc.sh" >> ~/.bashrc
+    if ! grep -q "source ${SMART_ROOT}/smartrc.sh" ~/.bashrc; then
+        echo "source ${SMART_ROOT}/smartrc.sh" >> ~/.bashrc
         echo "" >> ~/.bashrc
     fi
-    if ! grep -q "source ${SMART_ROOT}/dprc.sh" ~/.bash_profile; then
-        echo "source ${SMART_ROOT}/dprc.sh" >> ~/.bash_profile
+    if ! grep -q "source ${SMART_ROOT}/smartrc.sh" ~/.bash_profile; then
+        echo "source ${SMART_ROOT}/smartrc.sh" >> ~/.bash_profile
         echo "" >> ~/.bash_profile
     fi
 elif [[ "$SHELL" == "/bin/zsh" ]]; then
     # https://stackoverflow.com/questions/9901210/bash-source0-equivalent-in-zsh
     # 绝对路径
     export SMART_ROOT=$(cd $(dirname ${(%):-%N});pwd)
-    if ! grep -q "source ${SMART_ROOT}/dprc.sh" ~/.zshrc; then
-        echo "source ${SMART_ROOT}/dprc.sh" >> ~/.zshrc
+    if ! grep -q "source ${SMART_ROOT}/smartrc.sh" ~/.zshrc; then
+        echo "source ${SMART_ROOT}/smartrc.sh" >> ~/.zshrc
         echo "" >> ~/.zshrc
     fi
 else
@@ -32,6 +32,9 @@ function stbuild () {
     ${SMART_ROOT}/script/build.sh "$@"
 }
 
+function stinstall() {
+    ${SMART_ROOT}/script/install.sh "$@"
+}
 
 
 

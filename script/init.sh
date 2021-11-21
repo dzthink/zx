@@ -29,10 +29,10 @@ function main() {
 
 function usage() {
     cat << EOF
-dpinit
+stinit
     initiate environment
 
-usage: dpinit
+usage: stinit
 EOF
 }
 

@@ -10,14 +10,11 @@ if [ ! -d "$BIN_DIR" ]; then
     mkdir "${BIN_DIR}" 
 fi
 for target in ${targets}; do
-    if [ ! -d "$BIN_DIR/$target" ]; then
-        mkdir "$BIN_DIR/$target"
-    fi 
     build_option=""
     outfile_name=${target}
 
     cd "${ROOT_DIR}/app/${target}"
-    if ! go build ${build_option} -o "${BIN_DIR}/${target}/${outfile_name}"; then
+    if ! go build ${build_option} -o "${BIN_DIR}/${outfile_name}"; then
         exit 1
     fi
     if [ -d "devops" ]; then
