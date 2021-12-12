@@ -2,6 +2,7 @@
 script_dir=$(dirname "$0")
 DEVOPS_DIR=$(cd "${script_dir}"; pwd)
 ROOT_DIR=$(cd "${DEVOPS_DIR}"/..; pwd)
+echo $ROOT_DIR
 targets=("xfeng")
 
 BIN_DIR=${ROOT_DIR}/bin
@@ -13,7 +14,7 @@ for target in ${targets}; do
     build_option=""
     outfile_name=${target}
 
-    cd "${ROOT_DIR}/app/${target}"
+    cd "${ROOT_DIR}/${target}"
     if ! go build ${build_option} -o "${BIN_DIR}/${outfile_name}"; then
         exit 1
     fi

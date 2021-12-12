@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/dzthink/smart/xfeng/cli"
+	"github.com/dzthink/smart/go/cli"
 )
 
 func init() {

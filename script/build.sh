@@ -21,7 +21,7 @@ EOF
 }
 
 function build_xfeng() {
-    "${SMART_ROOT}"/xfeng/devops/build.sh
+    "${SMART_ROOT}"/app/devops/build.sh
 }
 
 main "$@"

@@ -1,2 +1,2 @@
 ### 开发工具
-source ./dprc.sh && dpinit
+source ./smartrc.sh && stinit
