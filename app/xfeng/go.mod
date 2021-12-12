@@ -4,4 +4,4 @@ go 1.16
 
 replace github.com/dzthink/smart/go => ../../go
 
-require github.com/dzthink/smart/go/cli v0.0.0-20211212130859-bee5b74b13a3
+require github.com/dzthink/smart/go v0.0.0-00010101000000-000000000000
