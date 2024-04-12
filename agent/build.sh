@@ -47,5 +47,5 @@ fi
 cd ${WORKDIR}
 GOOS=${GOODS} GOARCH=amd64 go build -o ${GOBIN} ${WORKDIR}
 
-cp -f ${GOBIN}/agent $HOME/bin/agent
-chmod a+x $HOME/bin/agent
+cp -f ${GOBIN}/agent $HOME/bin/zx
+chmod a+x $HOME/bin/zx
