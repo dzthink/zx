@@ -1,4 +1,5 @@
 blog/node_modules
 blog/hexo
 agent/bin/gobin/
+*.DS_Store
 .DS_Store
