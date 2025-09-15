@@ -1,5 +1,6 @@
 blog/node_modules
 blog/hexo
 agent/bin/gobin/
-*.DS_Store
-.DS_Store
+*/__pycache__/*
+ml/model/Qwen/*
+**/.DS_Store
